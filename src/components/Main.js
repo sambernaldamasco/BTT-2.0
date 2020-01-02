@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import NewTeamForm from './NewTeamForm.js'
 
 class Main extends React.Component {
   constructor(props){
@@ -13,7 +14,7 @@ class Main extends React.Component {
   getTeams = () => {
     axios.get('http://btt-backend.herokuapp.com/api/v1/teams.json')
     .then(response => {
-      console.log(response)
+      console.log(response.data)
       this.setState({
         teams: response.data
       })
@@ -28,7 +29,20 @@ class Main extends React.Component {
 
   render(){
     return(
-      <div>list of teams</div>
+      <div>
+      <h1>list of teams</h1>
+      {console.log(this.state.teams)}
+      <ul>
+      {this.state.teams.map(team => {
+        return(
+          <li key={team.id}>{team.name}</li>
+        )
+      })}
+
+      </ul>
+
+      <NewTeamForm getTeams={this.getTeams}/>
+      </div>
     )
   }
 }
