@@ -1,12 +1,17 @@
 import React from 'react'
 import axios from 'axios'
 import NewTeamForm from './NewTeamForm.js'
+import NewSkaterForm from './NewSkaterForm.js'
+
 
 class Main extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      teams: []
+      teams: [],
+      logged_user: {
+        team_id: 1
+      }
     }
   }
 
@@ -42,6 +47,7 @@ class Main extends React.Component {
       </ul>
 
       <NewTeamForm getTeams={this.getTeams}/>
+      <NewSkaterForm logged_user={this.state.logged_user} />
       </div>
     )
   }

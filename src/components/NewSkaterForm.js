@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 
-class NewTeamForm extends React.Component {
+class NewSkaterForm extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       name: '',
-      invite_code: ''
+      team_id: ''
     }
   }
 
@@ -20,31 +20,29 @@ class NewTeamForm extends React.Component {
     event.preventDefault()
 
     const formData = {
-      team: {
+      skater: {
         name: this.state.name,
-        invite_code: this.state.invite_code
+        team_id: this.props.logged_user.team_id
       }
     }
     console.log(formData);
 
-    axios.post('http://btt-backend.herokuapp.com/api/v1/teams', formData)
+    axios.post('http://btt-backend.herokuapp.com/api/v1/skaters', formData)
     .then(response => {
-      this.props.getTeams()
+      console.log(response);
     })
     .catch(error => console.log(error))
+
   }
 
   render(){
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name"> Name: </label>
+        <label htmlFor="name"> Skater Name: </label>
         <input type="text" id="name" value={this.state.name} onChange={this.handleChange}/>
 
-        <label htmlFor="invite_code"> Invite Code: </label>
-        <input type="text" id="invite_code" value={this.state.invite_code} onChange={this.handleChange}/>
-
-        <input type="submit" value="add new team"/>
+        <input type="submit" value="add new skater"/>
         </form>
       </div>
     )
@@ -54,4 +52,4 @@ class NewTeamForm extends React.Component {
 
 
 
-export default NewTeamForm
+export default NewSkaterForm
