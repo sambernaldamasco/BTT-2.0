@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import NewTeamForm from './NewTeamForm.js'
 import NewSkaterForm from './NewSkaterForm.js'
+import NewUserForm from './NewUserForm.js'
 
 
 class Main extends React.Component {
@@ -48,6 +49,7 @@ class Main extends React.Component {
 
       <NewTeamForm getTeams={this.getTeams}/>
       <NewSkaterForm logged_user={this.state.logged_user} />
+      <NewUserForm teams={this.state.teams} />
       </div>
     )
   }
