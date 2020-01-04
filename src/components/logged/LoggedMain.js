@@ -8,9 +8,6 @@ class LoggedMain extends React.Component {
     super(props)
     this.state = {
       teams: [],
-      logged_user: {
-        team_id: 1
-      }
     }
   }
 
@@ -26,7 +23,7 @@ class LoggedMain extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getTeams()
+    this.getTeams()
   }
 
   render(){
@@ -42,7 +39,7 @@ class LoggedMain extends React.Component {
       })}
 
       </ul>
-      <NewSkaterForm logged_user={this.state.logged_user} />
+      <NewSkaterForm logged_user={this.props.logged_user} />
       </div>
     )
   }

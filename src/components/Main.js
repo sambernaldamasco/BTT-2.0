@@ -9,32 +9,28 @@ class Main extends React.Component {
       super(props)
       this.state = {
         logged_user: null,
-        authMsg: null
+        authMsg: null,
     }
   }
 
 
+
   authUser = (formData) => {
-    axios.post('http://btt-backend.herokuapp.com/sessions', formData)
+    axios.post('http://btt-backend.herokuapp.com/session', formData)
     .then(response => {
       console.log(response.data)
-      response.data.id ? this.setState({logged_user: response.data, authMsg:null}) : this.setState({authMsg: 'invalid username or password'})
+      this.setState({logged_user: response.data, authMsg:null})
     })
-    .catch(error => console.log(error))
+    .catch(error => this.setState({authMsg: 'invalid username or password'}))
   }
-
-
-  // componentDidMount() {
-  //   this.getTeams()
-  // }
 
   render(){
     return(
       <div>
         {
           this.state.logged_user
-          ? <LoggedMain authUser={this.authUser} authMsg={this.authMsg}/>
-          : <VisitorMain />
+          ? <LoggedMain logged_user={this.state.logged_user} />
+          : <VisitorMain authUser={this.authUser} authMsg={this.state.authMsg} />
         }
       </div>
     )

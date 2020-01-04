@@ -36,6 +36,7 @@ class VisitorMain extends React.Component {
 
       <NewTeamForm />
       <NewUserForm teams={this.state.teams} />
+      <LogInForm teams={this.state.teams} authMsg={this.props.authMsg} authUser={this.props.authUser} />
       </div>
     )
   }

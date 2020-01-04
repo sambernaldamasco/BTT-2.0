@@ -30,6 +30,8 @@ class LogInForm extends React.Component {
 
     console.log(formData);
 
+    this.props.authUser(formData)
+
   }
 
   render(){
@@ -46,16 +48,13 @@ class LogInForm extends React.Component {
           })}
         </select>
 
-        <label htmlFor="invite code"> invite code: </label>
-        <input type="text" id="invite_code" value={this.state.invite_code} onChange={this.handleChange}/>
-
         <label htmlFor="username"> username: </label>
         <input type="text" id="username" value={this.state.username} onChange={this.handleChange}/>
 
         <label htmlFor="password"> password: </label>
         <input type="password" id="password" value={this.state.password} onChange={this.handleChange}/>
 
-        <input type="submit" value="create account"/>
+        <input type="submit" value="log in"/>
         </form>
         {
           this.props.authMsg

@@ -30,6 +30,9 @@ class NewSkaterForm extends React.Component {
     axios.post('http://btt-backend.herokuapp.com/api/v1/skaters', formData)
     .then(response => {
       console.log(response);
+      this.setState({
+        name: ''
+      })
     })
     .catch(error => console.log(error))
 
