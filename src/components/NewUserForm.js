@@ -8,7 +8,8 @@ class NewUserForm extends React.Component {
       username: '',
       password: '',
       invite_code: '',
-      team_id: ''
+      team_id: '',
+      formError: null
     }
   }
 
@@ -32,19 +33,30 @@ class NewUserForm extends React.Component {
 
     //checking if the invite code is the same from the db invite code from the team
     const checkInviteCode = () => {
-      let isMatch
       const selectedTeam = this.props.teams.find( ({id}) => id == this.state.team_id)
 
       return selectedTeam.invite_code === this.state.invite_code ?  true : false
     }
     console.log(formData);
-    console.log(checkInviteCode());
-    // axios.post('http://btt-backend.herokuapp.com/api/v1/skaters', formData)
-    // .then(response => {
-    //   console.log(response);
-    // })
-    // .catch(error => console.log(error))
 
+    if (checkInviteCode()) {
+      axios.post('http://btt-backend.herokuapp.com/api/v1/users', formData)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          username: '',
+          password: '',
+          invite_code: '',
+          team_id: '',
+          formError: null
+        })
+      })
+      .catch(error => console.log(error))
+    } else {
+      this.setState({
+        formError: 'Incorrect invite code'
+      })
+    }
   }
 
   render(){
@@ -56,7 +68,7 @@ class NewUserForm extends React.Component {
           <option value="">---- select a team ------</option>
           {this.props.teams.map(team => {
             return(
-              <option value={team.id} >{team.name}</option>
+              <option value={team.id} key={team.id}>{team.name}</option>
             )
           })}
         </select>
@@ -72,6 +84,11 @@ class NewUserForm extends React.Component {
 
         <input type="submit" value="add new skater"/>
         </form>
+        {
+          this.state.formError
+          ? <h3>{this.state.formError}</h3>
+          : null
+        }
       </div>
     )
   }
