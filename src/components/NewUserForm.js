@@ -23,14 +23,22 @@ class NewUserForm extends React.Component {
 
     const formData = {
       user: {
-        username: this.state.name,
+        username: this.state.username,
         team_id: this.state.team_id,
+        password: this.state.password,
         invite_code: this.state.invite_code
-
       }
     }
-    console.log(formData);
 
+    //checking if the invite code is the same from the db invite code from the team
+    const checkInviteCode = () => {
+      let isMatch
+      const selectedTeam = this.props.teams.find( ({id}) => id == this.state.team_id)
+
+      return selectedTeam.invite_code === this.state.invite_code ?  true : false
+    }
+    console.log(formData);
+    console.log(checkInviteCode());
     // axios.post('http://btt-backend.herokuapp.com/api/v1/skaters', formData)
     // .then(response => {
     //   console.log(response);
@@ -56,7 +64,7 @@ class NewUserForm extends React.Component {
         <label htmlFor="invite code"> invite code: </label>
         <input type="text" id="invite_code" value={this.state.invite_code} onChange={this.handleChange}/>
 
-        <label htmlFor="name"> username: </label>
+        <label htmlFor="username"> username: </label>
         <input type="text" id="username" value={this.state.username} onChange={this.handleChange}/>
 
         <label htmlFor="password"> password: </label>
