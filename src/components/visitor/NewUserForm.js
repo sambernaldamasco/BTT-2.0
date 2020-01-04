@@ -82,7 +82,7 @@ class NewUserForm extends React.Component {
         <label htmlFor="password"> password: </label>
         <input type="password" id="password" value={this.state.password} onChange={this.handleChange}/>
 
-        <input type="submit" value="add new skater"/>
+        <input type="submit" value="create account"/>
         </form>
         {
           this.state.formError

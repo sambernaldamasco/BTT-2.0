@@ -1,55 +1,41 @@
 import React from 'react'
 import axios from 'axios'
-import NewTeamForm from './NewTeamForm.js'
-import NewSkaterForm from './NewSkaterForm.js'
-import NewUserForm from './NewUserForm.js'
+import LoggedMain from './logged/LoggedMain.js'
+import VisitorMain from './visitor/VisitorMain.js'
 
 
 class Main extends React.Component {
   constructor(props){
-    super(props)
-    this.state = {
-      teams: [],
-      logged_user: {
-        team_id: 1
-      }
+      super(props)
+      this.state = {
+        logged_user: null,
+        authMsg: null
     }
   }
 
 
-  getTeams = () => {
-    axios.get('http://btt-backend.herokuapp.com/api/v1/teams.json')
+  authUser = (formData) => {
+    axios.post('http://btt-backend.herokuapp.com/sessions', formData)
     .then(response => {
       console.log(response.data)
-      this.setState({
-        teams: response.data
-      })
+      response.data.id ? this.setState({logged_user: response.data, authMsg:null}) : this.setState({authMsg: 'invalid username or password'})
     })
     .catch(error => console.log(error))
   }
 
 
-  componentDidMount() {
-    this.getTeams()
-  }
+  // componentDidMount() {
+  //   this.getTeams()
+  // }
 
   render(){
     return(
       <div>
-      <h1>list of teams</h1>
-      {console.log(this.state.teams)}
-      <ul>
-      {this.state.teams.map(team => {
-        return(
-          <li key={team.id}>{team.name}</li>
-        )
-      })}
-
-      </ul>
-
-      <NewTeamForm getTeams={this.getTeams}/>
-      <NewSkaterForm logged_user={this.state.logged_user} />
-      <NewUserForm teams={this.state.teams} />
+        {
+          this.state.logged_user
+          ? <LoggedMain authUser={this.authUser} authMsg={this.authMsg}/>
+          : <VisitorMain />
+        }
       </div>
     )
   }
