@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import NewSkaterForm from './NewSkaterForm.js'
+import SkaterList from './SkaterList.js'
 
 
 class LoggedMain extends React.Component {
@@ -39,7 +40,9 @@ class LoggedMain extends React.Component {
       })}
 
       </ul>
+
       <NewSkaterForm logged_user={this.props.logged_user} />
+      <SkaterList logged_user={this.props.logged_user} />
       </div>
     )
   }
