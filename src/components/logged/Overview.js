@@ -8,21 +8,24 @@ class Overview extends React.Component {
     this.state = {
       exceptional: [],
       good: [],
-      needsWork: []
+      needsWork: [],
+      average: 0
     }
   }
 
   skillOverview = () => {
-    const good = []
+    const prettygood = []
     const ok = []
     const bad = []
+    let sum = 0
+    let count = 0
 
     for (let key in this.props.skater.skill) {
       if (key !== "id" && key !== "skater_id" && key !== "created_at" && key !== "updated_at"  ) {
 
         switch (true) {
           case this.props.skater.skill[key] >= 4:
-            good.push(key.split('_').join(' '))
+            prettygood.push(key.split('_').join(' '))
           break;
 
           case this.props.skater.skill[key] === 3:
@@ -33,12 +36,19 @@ class Overview extends React.Component {
             bad.push(key.split('_').join(' '))
           break;
         }
+
+        sum += this.props.skater.skill[key]
+        count++
+
       }
     }
 
-    console.log(good);
-    console.log(ok);
-    console.log(bad);
+    this.setState({
+      exceptional: prettygood,
+      good: ok,
+      needsWork: bad,
+      average: sum / count
+    })
 
   }
 
@@ -51,6 +61,13 @@ class Overview extends React.Component {
     this.skillOverview()
   }
 
+  componentDidUpdate(prevProps){
+    if (this.props.skater.id !== prevProps.skater.id){
+      this.skillOverview()
+    }
+  }
+
+
   render(){
     return(
       <>
@@ -58,21 +75,33 @@ class Overview extends React.Component {
           <div>
             <h2>exceptional at:</h2>
             <ul>
-
+              {this.state.exceptional.map(skill => {
+                return (
+                  <li>{skill}</li>
+                )
+              })}
             </ul>
           </div>
 
           <div>
             <h2>good at:</h2>
             <ul>
-
+            {this.state.good.map(skill => {
+              return (
+                <li>{skill}</li>
+              )
+            })}
             </ul>
           </div>
 
           <div>
             <h2>needs work:</h2>
             <ul>
-
+            {this.state.needsWork.map(skill => {
+              return (
+                <li>{skill}</li>
+              )
+            })}
             </ul>
           </div>
         </div>
