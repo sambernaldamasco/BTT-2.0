@@ -6,6 +6,7 @@ class NewSkaterForm extends React.Component {
     super(props)
     this.state = {
       name: '',
+      veteran: false,
       team_id: ''
     }
   }
@@ -16,12 +17,19 @@ class NewSkaterForm extends React.Component {
     })
   }
 
+  handleCheckboxChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.checked
+    })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
 
     const formData = {
       skater: {
         name: this.state.name,
+        veteran: this.state.veteran,
         team_id: this.props.logged_user.team_id
       }
     }
@@ -31,7 +39,8 @@ class NewSkaterForm extends React.Component {
     .then(response => {
       console.log(response);
       this.setState({
-        name: ''
+        name: '',
+        veteran: false,
       })
     })
     .catch(error => console.log(error))
@@ -44,6 +53,9 @@ class NewSkaterForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
         <label htmlFor="name"> Skater Name: </label>
         <input type="text" id="name" value={this.state.name} onChange={this.handleChange}/>
+
+        <label htmlFor="veteran skater"> veteran skater: </label>
+        <input type="checkbox" id="veteran" checked={this.state.veteran} onChange={this.handleCheckboxChange}/>
 
         <input type="submit" value="add new skater"/>
         </form>
