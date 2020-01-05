@@ -9,6 +9,7 @@ class SkillsAssessment extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      skater: null,
       lateral_movement: 1,
       hockey_stop: 1,
       plow_stop: 1,
@@ -28,6 +29,24 @@ class SkillsAssessment extends React.Component {
   handleChange = (event) => {
     this.setState({
       [event.target.id] : parseInt(event.target.value)
+    })
+  }
+
+  resetStats = () => {
+    this.setState({
+      lateral_movement: 1,
+      hockey_stop: 1,
+      plow_stop: 1,
+      turning_toe: 1,
+      power_slide: 1,
+      transitions: 1,
+      backwards_skating: 1,
+      speed_endurance: 1,
+      recovery: 1,
+      pack_work: 1,
+      strategy_adaptability: 1,
+      awareness_communication: 1,
+      mental_recovery: 1
     })
   }
 
@@ -52,6 +71,24 @@ class SkillsAssessment extends React.Component {
       })
     })
     .catch(error => console.log(error))
+  }
+
+  acceptSkater = () => {
+    axios.put(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.props.currentSkater.skill.id}`, {skater: {accepted: true} })
+    .then(response => {
+      console.log(response);
+      this.setState({
+        skater: null
+      })
+    })
+    .catch(error => console.log(error))
+  }
+
+
+  componentDidUpdate(prevProps){
+    if (this.props.currentSkater.id !== prevProps.currentSkater.id){
+      this.resetStats()
+    }
   }
 
   render(){
