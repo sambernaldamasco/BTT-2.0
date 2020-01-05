@@ -3,7 +3,10 @@ import axios from 'axios'
 import AgilityAssessment from './AgilityAssessment.js'
 import FitnessAssessment from './FitnessAssessment.js'
 import TeamworkAssessment from './TeamworkAssessment.js'
+import Overview from './Overview.js'
 
+
+const skillsArray = ['lateral_movement', 'hockey_stop', 'plow_stop', 'turning_toe', 'power_slide', 'transitions', 'backwards_skating', 'speed_endurance', 'recovery', 'pack_work', 'strategy_adaptability', 'awareness_communication', 'mental_recovery']
 
 class SkillsAssessment extends React.Component {
   constructor(props){
@@ -33,8 +36,6 @@ class SkillsAssessment extends React.Component {
   }
 
   resetStats = () => {
-    const skillsArray = ['lateral_movement', 'hockey_stop', 'plow_stop', 'turning_toe', 'power_slide', 'transitions', 'backwards_skating', 'speed_endurance', 'recovery', 'pack_work', 'strategy_adaptability', 'awareness_communication', 'mental_recovery']
-
     skillsArray.map(skill =>{
       this.setState({
         [skill]: this.props.currentSkater.skill[skill]
@@ -61,20 +62,11 @@ class SkillsAssessment extends React.Component {
     axios.put(`http://btt-backend.herokuapp.com/api/v1/skills/${this.props.currentSkater.skill.id}`, {skill: this.state})
     .then(response => {
       console.log(response);
-      this.setState({
-        lateral_movement: 1,
-        hockey_stop: 1,
-        plow_stop: 1,
-        turning_toe: 1,
-        power_slide: 1,
-        transitions: 1,
-        backwards_skating: 1,
-        speed_endurance: 1,
-        recovery: 1,
-        pack_work: 1,
-        strategy_adaptability: 1,
-        awareness_communication: 1,
-        mental_recovery: 1
+      this.updatedSkaterInfo()
+      skillsArray.map(skill =>{
+        this.setState({
+          [skill]: 1
+        })
       })
     })
     .catch(error => console.log(error))
@@ -91,6 +83,31 @@ class SkillsAssessment extends React.Component {
     .catch(error => console.log(error))
   }
 
+  dismissSkater = () => {
+    axios.delete(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.props.currentSkater.skill.id}`)
+    .then(response => {
+      console.log(response);
+      this.setState({
+        skater: null
+      })
+    })
+    .catch(error => console.log(error))
+  }
+
+  updatedSkaterInfo = () => {
+    axios.get(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.props.currentSkater.id}`)
+    .then(response => {
+      console.log(response);
+      this.setState({
+        skater: response.data
+      })
+    })
+    .catch(error => console.log(error))
+  }
+
+  componentDidMount(){
+    this.resetStats()
+  }
 
   componentDidUpdate(prevProps){
     if (this.props.currentSkater.id !== prevProps.currentSkater.id){
@@ -112,6 +129,11 @@ class SkillsAssessment extends React.Component {
         <TeamworkAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
 
         <button onClick={this.finishAssessment}>submit</button>
+        {
+          this.state.skater
+          ? <Overview skater={this.state.skater} />
+          : null
+        }
       </div>
     )
 
