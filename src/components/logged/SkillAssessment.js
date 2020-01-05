@@ -1,25 +1,26 @@
 import React from 'react'
 import axios from 'axios'
 import AgilityAssessment from './AgilityAssessment.js'
+import FitnessAssessment from './FitnessAssessment.js'
 
 
 class SkillsAssessment extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      lateral_movement: 0,
-      hockey_stop: 0,
-      plow_stop: 0,
-      turning_toe: 0,
-      power_slide: 0,
-      transitions: 0,
-      backwards_skating: 0,
-      speed_endurance: 0,
-      recovery: 0,
-      pack_work: 0,
-      strategy_adaptability: 0,
-      awareness_communication: 0,
-      mental_recovery: 0
+      lateral_movement: 1,
+      hockey_stop: 1,
+      plow_stop: 1,
+      turning_toe: 1,
+      power_slide: 1,
+      transitions: 1,
+      backwards_skating: 1,
+      speed_endurance: 1,
+      recovery: 1,
+      pack_work: 1,
+      strategy_adaptability: 1,
+      awareness_communication: 1,
+      mental_recovery: 1
     }
   }
 
@@ -36,6 +37,7 @@ class SkillsAssessment extends React.Component {
         <h2>Agility</h2>
         <AgilityAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
         <h2>Fitness</h2>
+        <FitnessAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
 
         <h2>Teamwork</h2>
 
