@@ -46,7 +46,7 @@ class SkaterList extends React.Component {
         </ul>
         {
           this.state.currentSkater.id
-          ? <SkillAssessment currentSkater={this.state.currentSkater}/>
+          ? <SkillAssessment currentSkater={this.state.currentSkater} getSkaters={this.getSkaters}/>
           : null
         }
       </div>

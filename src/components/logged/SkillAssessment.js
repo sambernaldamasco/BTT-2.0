@@ -73,9 +73,10 @@ class SkillsAssessment extends React.Component {
   }
 
   acceptSkater = () => {
-    axios.put(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.props.currentSkater.skill.id}`, {skater: {accepted: true} })
+    axios.put(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.state.skater.id}`, {skater: {accepted: true} })
     .then(response => {
       console.log(response);
+      this.props.getSkaters()
       this.setState({
         skater: null
       })
@@ -84,9 +85,10 @@ class SkillsAssessment extends React.Component {
   }
 
   dismissSkater = () => {
-    axios.delete(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.props.currentSkater.skill.id}`)
+    axios.delete(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.state.skater.id}`)
     .then(response => {
       console.log(response);
+      this.props.getSkaters()
       this.setState({
         skater: null
       })
@@ -131,7 +133,7 @@ class SkillsAssessment extends React.Component {
         <button onClick={this.finishAssessment}>submit</button>
         {
           this.state.skater
-          ? <Overview skater={this.state.skater} />
+          ? <Overview skater={this.state.skater} acceptSkater={this.acceptSkater} dismissSkater={this.dismissSkater}/>
           : null
         }
       </div>
