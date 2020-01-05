@@ -55,12 +55,13 @@ class AttendanceForm extends React.Component {
     for(const skater of this.selectedCheckboxes) {
       let formData = {
         attendance: {
-          team_id: this.props.currentPractice.team_id,
+          practice_id: this.props.currentPractice.id,
           skater_id: skater
         }
       }
 
-      console.log(formData);
+      this.props.submitAttendance(formData)
+
     }
 
   }

@@ -57,7 +57,7 @@ class PracticeList extends React.Component {
 
         {
           this.state.currentPractice
-          ? <Attendance currentPractice={this.state.currentPractice}/>
+          ? <Attendance currentPractice={this.state.currentPractice} getPractices={this.getPractices}/>
           : null
         }
       </div>

@@ -11,7 +11,22 @@ class Attendance extends React.Component {
   }
 
   submitAttendance = (formData) => {
-    console.log(formData);
+    axios.post(`http://btt-backend.herokuapp.com/api/v1/attendances/`, formData)
+    .then(response => {
+      console.log(response);
+      this.updatePractice()
+    })
+    .catch(error => console.log(error))
+  }
+
+  updatePractice = () => {
+    axios.put(`http://btt-backend.herokuapp.com/api/v1/practices/${this.props.currentPractice.id}`, {practice:{has_happened: true}})
+    .then(response => {
+      console.log(response);
+      this.props.getPractices()
+    })
+    .catch(error => console.log(error))
+
   }
 
   getRoster = () => {
@@ -35,7 +50,7 @@ class Attendance extends React.Component {
       <div>
         <h1>{this.props.currentPractice.date} @ {this.props.currentPractice.location}</h1>
         {
-          this.props.currentPractice.skaters
+          this.props.currentPractice.skaters.length > 0
           ? <div>
               <ul>
                 {this.props.currentPractice.skaters.map(skater => {
@@ -43,9 +58,9 @@ class Attendance extends React.Component {
                 })}
               </ul>
             </div>
-          : null
+          : <AttendanceForm currentPractice={this.props.currentPractice} submitAttendance={this.submitAttendance} skaters={this.state.skaters}/>
         }
-        <AttendanceForm currentPractice={this.props.currentPractice} submitAttendance={this.submitAttendance} skaters={this.state.skaters}/>
+
       </div>
     )
 
