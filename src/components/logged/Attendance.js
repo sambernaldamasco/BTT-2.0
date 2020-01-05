@@ -1,12 +1,15 @@
 import React from 'react'
 import axios from 'axios'
+// import { CSVLink, CSVDownload } from 'react-csv'
 import AttendanceForm from './AttendanceForm.js'
+
 
 class Attendance extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      skaters: []
+      skaters: [],
+      // csvData: []
     }
   }
 
@@ -41,8 +44,25 @@ class Attendance extends React.Component {
 
   }
 
+  // generateCsv = () => {
+  //   const attendanceArray = [["skaters"]]
+  //   this.props.currentPractice.skaters.map(skater => {
+  //     attendanceArray.push(skater.name)
+  //   })
+  //
+  //   this.setState({
+  //     csvData: attendanceArray
+  //   })
+  // }
+
   componentDidMount(){
     this.getRoster()
+  }
+
+  componentDidUpdate(prevProps){
+    if (this.props.currentPractice.id !== prevProps.currentPractice.id){
+      this.generateCsv()
+    }
   }
 
   render(){

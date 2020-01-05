@@ -4,6 +4,7 @@ import NewSkaterForm from './NewSkaterForm.js'
 import NewPracticeForm from './NewPracticeForm.js'
 import SkaterList from './SkaterList.js'
 import PracticeList from './PracticeList.js'
+import TeamList from './TeamList.js'
 
 
 
@@ -33,17 +34,9 @@ class LoggedMain extends React.Component {
   render(){
     return(
       <div>
-      <h1>list of teams</h1>
-      {console.log(this.state.teams)}
-      <ul>
-      {this.state.teams.map(team => {
-        return(
-          <li key={team.id}>{team.name}</li>
-        )
-      })}
 
-      </ul>
 
+      <TeamList logged_user={this.props.logged_user}/>
       <NewSkaterForm logged_user={this.props.logged_user} />
       <SkaterList logged_user={this.props.logged_user} />
       <NewPracticeForm logged_user={this.props.logged_user} />
