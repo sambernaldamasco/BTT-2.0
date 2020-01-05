@@ -107,6 +107,7 @@ class AgilityAssessment extends React.Component {
         </select>
 
         <label htmlFor="rubric"> {this.state.rubric.lateral_movement.msg} </label>
+        <br/>
 
         <label htmlFor="hockey stop"> Hockey Stop: </label>
         <select id="hockey_stop" value={this.props.hockey_stop} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
@@ -118,6 +119,7 @@ class AgilityAssessment extends React.Component {
         </select>
 
         <label htmlFor="rubric"> {this.state.rubric.hockey_stop.msg} </label>
+        <br/>
 
         <label htmlFor="plow stop"> plow Stop: </label>
         <select id="plow_stop" value={this.props.plow_stop} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
@@ -130,6 +132,7 @@ class AgilityAssessment extends React.Component {
 
         <label htmlFor="rubric"> {this.state.rubric.plow_stop.msg} </label>
 
+        <br/>
 
         <label htmlFor="turning toe stop"> turning toe stop: </label>
         <select id="turning_toe" value={this.props.turning_toe} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
@@ -141,6 +144,7 @@ class AgilityAssessment extends React.Component {
         </select>
 
         <label htmlFor="rubric"> {this.state.rubric.turning_toe.msg} </label>
+        <br/>
 
         <label htmlFor="power slide"> power slide: </label>
         <select id="power_slide" value={this.props.power_slide} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
@@ -153,6 +157,7 @@ class AgilityAssessment extends React.Component {
 
         <label htmlFor="rubric"> {this.state.rubric.power_slide.msg} </label>
 
+        <br/>
 
         <label htmlFor="transitions"> transitions: </label>
         <select id="transitions" value={this.props.plow_stop} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
@@ -164,6 +169,7 @@ class AgilityAssessment extends React.Component {
         </select>
 
         <label htmlFor="rubric"> {this.state.rubric.transitions.msg} </label>
+        <br/>
 
         <label htmlFor="backwards skating"> backwards skating/blocking: </label>
         <select id="backwards_skating" value={this.props.backwards_skating} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>

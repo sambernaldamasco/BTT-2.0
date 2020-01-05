@@ -32,6 +32,8 @@ class FitnessAssessment extends React.Component {
     }
   }
 
+
+
   changeRubric = (event) => {
 
     const { rubric } = {...this.state}
@@ -54,6 +56,7 @@ class FitnessAssessment extends React.Component {
         </select>
 
         <label htmlFor="rubric"> {this.state.rubric.speed_endurance.msg} </label>
+        <br/>
 
         <label htmlFor="recovery"> recovery: </label>
         <select id="recovery" value={this.props.recovery} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
