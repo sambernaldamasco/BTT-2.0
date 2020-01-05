@@ -33,21 +33,28 @@ class SkillsAssessment extends React.Component {
   }
 
   resetStats = () => {
-    this.setState({
-      lateral_movement: 1,
-      hockey_stop: 1,
-      plow_stop: 1,
-      turning_toe: 1,
-      power_slide: 1,
-      transitions: 1,
-      backwards_skating: 1,
-      speed_endurance: 1,
-      recovery: 1,
-      pack_work: 1,
-      strategy_adaptability: 1,
-      awareness_communication: 1,
-      mental_recovery: 1
+    const skillsArray = ['lateral_movement', 'hockey_stop', 'plow_stop', 'turning_toe', 'power_slide', 'transitions', 'backwards_skating', 'speed_endurance', 'recovery', 'pack_work', 'strategy_adaptability', 'awareness_communication', 'mental_recovery']
+
+    skillsArray.map(skill =>{
+      this.setState({
+        [skill]: this.props.currentSkater.skill[skill]
+      })
     })
+    // this.setState({
+    //   lateral_movement: this.props.currentSkater.skill.lateral_movement,
+    //   hockey_stop: this.props.currentSkater.skill.hockey_stop,
+    //   plow_stop: this.props.currentSkater.skill.plow_stop,
+    //   turning_toe: this.props.currentSkater.skill.turning_toe,
+    //   power_slide: this.props.currentSkater.skill.power_slide,
+    //   transitions: this.props.currentSkater.skill.transitions,
+    //   backwards_skating: this.props.currentSkater.skill.backwards_skating,
+    //   speed_endurance: this.props.currentSkater.skill.speed_endurance,
+    //   recovery: this.props.currentSkater.skill.recovery,
+    //   pack_work: this.props.currentSkater.skill.pack_work,
+    //   strategy_adaptability: this.props.currentSkater.skill.strategy_adaptability,
+    //   awareness_communication: this.props.currentSkater.skill.awareness_communication,
+    //   mental_recovery: this.props.currentSkater.skill.mental_recovery
+    // })
   }
 
   finishAssessment = () => {
