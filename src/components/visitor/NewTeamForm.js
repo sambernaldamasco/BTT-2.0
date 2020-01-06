@@ -36,17 +36,27 @@ class NewTeamForm extends React.Component {
 
   render(){
     return(
-      <div>
-        <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name"> Name: </label>
-        <input type="text" id="name" value={this.state.name} onChange={this.handleChange}/>
+      <>
+      <form onSubmit={this.handleSubmit}>
 
-        <label htmlFor="invite_code"> Invite Code: </label>
-        <input type="text" id="invite_code" value={this.state.invite_code} onChange={this.handleChange}/>
+        <div className="field">
+          <label className="label" htmlFor="name"> Name: </label>
+          <div className="control">
+            <input className="input" type="text" id="name" value={this.state.name} onChange={this.handleChange}/>
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label" htmlFor="invite_code"> Invite Code: </label>
+
+          <div className="control">
+          <input className="input" type="text" id="invite_code" value={this.state.invite_code} onChange={this.handleChange}/>
+          </div>
+        </div>
 
         <input type="submit" value="add new team"/>
         </form>
-      </div>
+      </>
     )
   }
 
