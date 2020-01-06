@@ -36,13 +36,13 @@ class VisitorMain extends React.Component {
   renderPage = () => {
     switch (this.state.view) {
       case 'sign up':
-      return <NewTeamForm />
+      return  <NewUserForm teams={this.state.teams} />
 
       case 'sign in':
       return <LogInForm teams={this.state.teams} authMsg={this.props.authMsg} authUser={this.props.authUser} />
 
       case 'register':
-      return <NewUserForm teams={this.state.teams} />
+      return <NewTeamForm />
 
       default:
       return(
