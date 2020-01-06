@@ -30,6 +30,7 @@ class NewTeamForm extends React.Component {
     axios.post('http://btt-backend.herokuapp.com/api/v1/teams', formData)
     .then(response => {
       this.props.getTeams()
+      this.props.mainHandleView(null)
     })
     .catch(error => console.log(error))
   }

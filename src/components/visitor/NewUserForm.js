@@ -42,7 +42,6 @@ class NewUserForm extends React.Component {
     if (checkInviteCode()) {
       axios.post('http://btt-backend.herokuapp.com/api/v1/users', formData)
       .then(response => {
-        console.log(response);
         this.setState({
           username: '',
           password: '',
@@ -50,6 +49,8 @@ class NewUserForm extends React.Component {
           team_id: '',
           formError: null
         })
+
+        this.props.mainHandleView('sign in')
       })
       .catch(error => console.log(error))
     } else {

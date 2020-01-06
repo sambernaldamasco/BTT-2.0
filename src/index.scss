@@ -47,13 +47,30 @@ $input-shadow: none;
   color: darken($blue, 10%);
 }
 
+.break{
+  color: $green;
+  background-color: $green;
+}
+
+.overview-column {
+  border-right: 1px solid $light-grey;
+}
+
+.exceptional {
+  color: $blue;
+  border-bottom: 1px solid $blue;
+}
+
+.good {
+  color: $green;
+  border-bottom: 1px solid $green;
+}
+
+.needswork {
+  color: $yellow;
+  border-bottom: 1px solid $yellow;
+}
+
+
 // Import only what you need from Bulma
-@import "../node_modules/bulma/sass/utilities/_all.sass";
-@import "../node_modules/bulma/sass/base/_all.sass";
-@import "../node_modules/bulma/sass/elements/button.sass";
-@import "../node_modules/bulma/sass/elements/container.sass";
-@import "../node_modules/bulma/sass/elements/title.sass";
-@import "../node_modules/bulma/sass/form/_all.sass";
-@import "../node_modules/bulma/sass/components/navbar.sass";
-@import "../node_modules/bulma/sass/layout/hero.sass";
-@import "../node_modules/bulma/sass/layout/section.sass";
+@import "../node_modules/bulma/bulma.sass"

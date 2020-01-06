@@ -53,11 +53,7 @@ class Overview extends React.Component {
   }
 
 
-  //function to get practice list by the team id
-
-
   componentDidMount() {
-    //call for practices by team_id
     this.skillOverview()
   }
 
@@ -71,47 +67,59 @@ class Overview extends React.Component {
   render(){
     return(
       <>
+
         <div>
-          <h1>{this.props.skater.name}</h1>
-          <div>
-            <h2>exceptional at:</h2>
-            <ul>
-              {this.state.exceptional.map(skill => {
+          <h2 className="title-change is-size-2">{this.props.skater.name.toUpperCase()}</h2>
+          <br/>
+
+          <h2 className="title-change is-size-3">skills overview</h2>
+          <br/>
+          <div className="columns">
+            <div className="column overview-column">
+              <h2 className="exceptional is-size-4">exceptional at:</h2>
+              <ul>
+                {this.state.exceptional.map(skill => {
+                  return (
+                    <li>{skill}</li>
+                  )
+                })}
+              </ul>
+            </div>
+
+            <div className="column overview-column">
+              <h2 className="good is-size-4">good at:</h2>
+              <ul>
+              {this.state.good.map(skill => {
                 return (
                   <li>{skill}</li>
                 )
               })}
-            </ul>
-          </div>
+              </ul>
+            </div>
 
-          <div>
-            <h2>good at:</h2>
-            <ul>
-            {this.state.good.map(skill => {
-              return (
-                <li>{skill}</li>
-              )
-            })}
-            </ul>
-          </div>
-
-          <div>
-            <h2>needs work:</h2>
-            <ul>
-            {this.state.needsWork.map(skill => {
-              return (
-                <li>{skill}</li>
-              )
-            })}
-            </ul>
+            <div className="column">
+              <h2 className="needswork is-size-4">needs work:</h2>
+              <ul>
+              {this.state.needsWork.map(skill => {
+                return (
+                  <li>{skill}</li>
+                )
+              })}
+              </ul>
+            </div>
           </div>
         </div>
+
+        <br/>
+        <hr className="break"/>
 
         {
           this.props.skater.accepted
           ?
             <div>
-              <h3>attendance</h3>
+              <h2 className="title-change is-size-3">attendance</h2>
+              <h2 className="is-size-4"> skater attended {(this.props.practiceCount - (this.props.skater.practices.length - 1))*100}% of practices</h2>
+
               <ul>
               {this.props.skater.practices.map(practice => {
                 return <li key={practice.id}>{practice.date} @ {practice.location}</li>
