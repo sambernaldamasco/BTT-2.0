@@ -7,7 +7,8 @@ class TeamList extends React.Component {
     super(props)
     this.state = {
       skaters: [],
-      currentSkater: ''
+      currentSkater: '',
+      view: null
     }
   }
 
@@ -24,8 +25,36 @@ class TeamList extends React.Component {
 
   selectSkater = (skater) => {
     this.setState({
-      currentSkater: skater
+      currentSkater: skater,
+      view: 'overview'
     })
+  }
+
+  teamHandleView = (page) => {
+    this.setState({
+      view: page
+    })
+  }
+
+  renderPage = () => {
+    switch (this.state.view) {
+      case 'overview':
+      return <Overview skater={this.state.currentSkater} />
+
+      default:
+      return(
+        <>
+          <h2 className="title-change is-size-2">team roster</h2>
+          <ul>
+          {this.state.skaters.map(skater => {
+            return(
+              <li className="is-size-4" key={skater.id} onClick={()=>this.selectSkater(skater)}>{skater.name} </li>
+            )
+          })}
+          </ul>
+        </>
+      )
+    }
   }
 
   componentDidMount() {
@@ -34,21 +63,9 @@ class TeamList extends React.Component {
 
   render(){
     return(
-      <div>
-        <h1>Team Roster</h1>
-        {console.log(this.state.skaters)}
-        <ul>
-        {this.state.skaters.map(skater => {
-          return(
-            <li key={skater.id} onClick={()=>this.selectSkater(skater)}>{skater.name} </li>
-          )
-        })}
-        </ul>
-        {
-          this.state.currentSkater.id
-          ? <Overview skater={this.state.currentSkater} />
-          : null
-        }
+      <div className="container">
+      {this.renderPage()}
+
       </div>
     )
 

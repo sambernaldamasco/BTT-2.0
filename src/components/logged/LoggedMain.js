@@ -6,6 +6,7 @@ import SkaterList from './SkaterList.js'
 import PracticeList from './PracticeList.js'
 import TeamList from './TeamList.js'
 import HomeNav from './HomeNav.js'
+import HomeHeader from './HomeHeader.js'
 
 
 
@@ -38,7 +39,7 @@ class LoggedMain extends React.Component {
   renderPage = () => {
     switch (this.state.view) {
       case 'roster':
-      return  <TeamList logged_user={this.props.logged_user}/>
+      return  <TeamList logged_user={this.props.logged_user} mainHandleView={this.mainHandleView}/>
 
       case 'assessment':
       return <SkaterList logged_user={this.props.logged_user} />
@@ -49,14 +50,14 @@ class LoggedMain extends React.Component {
 
       default:
       return(
-        <>
+        <div className="container">
         <a className="is-size-1" onClick={()=> this.mainHandleView('roster')}>team roster</a>
         <br/>
         <a className="is-size-1" onClick={()=> this.mainHandleView('assessment')}>skill assessment</a>
         <br/>
         <a className="is-size-1" onClick={()=> this.mainHandleView('practice')}>practice management</a>
         <br/>
-        </>
+        </div>
       )
     }
   }
@@ -71,10 +72,10 @@ class LoggedMain extends React.Component {
       <div>
       { this.state.view !== null
         ? <HomeNav mainHandleView={this.mainHandleView} />
-        : null
+        : <HomeHeader />
       }
 
-      <div className="container">
+      <div>
         <br/>
         {this.renderPage()}
       </div>

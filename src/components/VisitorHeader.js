@@ -1,8 +1,7 @@
 import React from 'react'
 
 
-
-class Header extends React.Component{
+class VisitorHeader extends React.Component{
 
   render(){
     return (
@@ -19,10 +18,9 @@ class Header extends React.Component{
           </div>
         </div>
       </section>
-
-    </>
+      </>
     )
   }
 }
 
-export default Header
+export default VisitorHeader

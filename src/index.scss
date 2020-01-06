@@ -4,17 +4,22 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap');
 
 // Set your brand colors
-$purple: #4C648E;
+$blue: #4C648E;
+$green: #79BCB8;
 $pink: #FA7C91;
+$yellow: #D7BE82;
+$light-grey: #C8C8C8;
+$dark-grey: #B3B3B3;
 $brown: #757763;
 $beige-light: #D0D1CD;
 $beige-lighter: #EFF0EB;
 
 // Update Bulma's global variables
 $family-sans-serif: "Roboto", sans-serif;
+$dark: $green;
 $grey-dark: $pink;
 $grey-light: $beige-light;
-$primary: $purple;
+$primary: $blue;
 $link: $pink;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
@@ -36,6 +41,10 @@ $input-shadow: none;
 
 .lilrighty{
   padding-right: 10px;
+}
+
+.title-change{
+  color: darken($blue, 10%);
 }
 
 // Import only what you need from Bulma

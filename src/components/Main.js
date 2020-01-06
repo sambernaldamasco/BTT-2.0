@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import LoggedMain from './logged/LoggedMain.js'
 import VisitorMain from './visitor/VisitorMain.js'
-import Header from './Header.js'
+import VisitorHeader from './VisitorHeader.js'
+
 
 class Main extends React.Component {
   constructor(props){
@@ -35,10 +36,11 @@ class Main extends React.Component {
       <>
         {
           this.state.logged_user
-          ? <LoggedMain logged_user={this.state.logged_user} logout={this.logout}/>
+          ?
+          <LoggedMain logged_user={this.state.logged_user} logout={this.logout}/>
           :
           <>
-          <Header />
+          <VisitorHeader />
           <VisitorMain authUser={this.authUser} authMsg={this.state.authMsg} />
           </>
         }
