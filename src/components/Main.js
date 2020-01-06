@@ -4,7 +4,6 @@ import LoggedMain from './logged/LoggedMain.js'
 import VisitorMain from './visitor/VisitorMain.js'
 import Header from './Header.js'
 
-
 class Main extends React.Component {
   constructor(props){
       super(props)
@@ -37,6 +36,9 @@ class Main extends React.Component {
           <VisitorMain authUser={this.authUser} authMsg={this.state.authMsg} />
           </>
         }
+        <br/>
+        <br/>
+
       </>
     )
   }
