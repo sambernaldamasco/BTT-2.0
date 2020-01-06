@@ -6,7 +6,7 @@ class VisitorNav extends React.Component{
   render(){
     return (
       <>
-        <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-primary lillefty" role="navigation" aria-label="main navigation">
           <div id="navbarBasicExample" className="navbar-menu" >
             <div className="navbar-start">
             <a className="navbar-item" onClick={()=> this.props.mainHandleView(null)}>
