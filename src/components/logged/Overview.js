@@ -130,11 +130,11 @@ class Overview extends React.Component {
             <div>
             {
               this.props.skater.veteran || this.state.average >= 3
-              ? <button onClick={this.props.acceptSkater}>accept skater</button>
+              ? <button className="button is-primary" onClick={this.props.acceptSkater}>accept skater</button>
               : null
             }
 
-            <button onClick={this.props.dismissSkater}>dismiss skater</button>
+            <button className="button is-warning is-outlined" onClick={this.props.dismissSkater}>dismiss skater</button>
             </div>
         }
 

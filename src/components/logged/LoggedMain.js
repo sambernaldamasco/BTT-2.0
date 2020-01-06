@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import NewSkaterForm from './NewSkaterForm.js'
 import NewPracticeForm from './NewPracticeForm.js'
 import SkaterList from './SkaterList.js'
 import PracticeList from './PracticeList.js'
@@ -80,7 +79,6 @@ class LoggedMain extends React.Component {
         {this.renderPage()}
       </div>
 
-      <NewSkaterForm logged_user={this.props.logged_user} />
 
       <NewPracticeForm logged_user={this.props.logged_user} />
       </div>

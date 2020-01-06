@@ -44,7 +44,7 @@ class LogInForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
           <div className="field">
-            <label className="label" htmlFor="teams"> team </label>
+            <label htmlFor="teams"> team </label>
 
             <div className="control">
               <div className="select">
@@ -61,7 +61,7 @@ class LogInForm extends React.Component {
           </div>
 
           <div className="field">
-            <label className="label" htmlFor="username"> username </label>
+            <label htmlFor="username"> username </label>
 
             <div className="control">
             <input className="input" type="text" id="username" value={this.state.username} onChange={this.handleChange}/>

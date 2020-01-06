@@ -16,10 +16,12 @@ $beige-lighter: #EFF0EB;
 
 // Update Bulma's global variables
 $family-sans-serif: "Roboto", sans-serif;
+$primary: $blue;
 $dark: $green;
+$light: $yellow;
+$info: darken($yellow, 30%);
 $grey-dark: $pink;
 $grey-light: $beige-light;
-$primary: $blue;
 $link: $pink;
 $widescreen-enabled: false;
 $fullhd-enabled: false;

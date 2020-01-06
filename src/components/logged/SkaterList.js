@@ -1,13 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import SkillAssessment from './SkillAssessment.js'
+import NewSkaterForm from './NewSkaterForm.js'
 
 class SkaterList extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       skaters: [],
-      currentSkater: ''
+      currentSkater: '',
+      view: null
     }
   }
 
@@ -24,7 +26,14 @@ class SkaterList extends React.Component {
 
   selectSkater = (skater) => {
     this.setState({
-      currentSkater: skater
+      currentSkater: skater,
+      view: 'assessment'
+    })
+  }
+
+  assessmentHandleView = (page) => {
+    this.setState({
+      view: page
     })
   }
 
@@ -32,24 +41,58 @@ class SkaterList extends React.Component {
     this.getSkaters()
   }
 
+  renderPage = () => {
+    switch (this.state.view) {
+      case 'assessment':
+      return <SkillAssessment currentSkater={this.state.currentSkater} getSkaters={this.getSkaters} assessmentHandleView={this.assessmentHandleView}/>
+
+      case 'new':
+      return <NewSkaterForm logged_user={this.props.logged_user} getSkaters={this.getSkaters} assessmentHandleView={this.assessmentHandleView}/>
+
+      default:
+      return(
+        <>
+          <h1 className="title-change is-size-2">list of skaters</h1>
+          <ul>
+            {this.state.skaters.map(skater => {
+              return(
+                <li className="is-size-4" key={skater.id}>
+                  <a onClick={()=>this.selectSkater(skater)}> {skater.name} </a>
+                </li>
+              )
+            })}
+          </ul>
+          <br/>
+          <button className="button is-primary" onClick={()=>this.assessmentHandleView('new')}>
+            add new skater
+          </button>
+        </>
+      )
+    }
+  }
+
   render(){
     return(
-      <div>
-        <h1>list of skaters</h1>
-        {console.log(this.state.skaters)}
-        <ul>
-        {this.state.skaters.map(skater => {
-          return(
-            <li key={skater.id} onClick={()=>this.selectSkater(skater)}>{skater.name} </li>
-          )
-        })}
-        </ul>
-        {
-          this.state.currentSkater.id
-          ? <SkillAssessment currentSkater={this.state.currentSkater} getSkaters={this.getSkaters}/>
-          : null
-        }
+      <>
+      {
+        this.state.view !== "assessment"
+        ?
+        <>
+        <nav class="breadcrumb is-left lillefty" aria-label="breadcrumbs">
+          <ul>
+            <li> <a onClick={()=>this.props.mainHandleView(null)}>home</a> </li>
+            <li className={this.state.view === null ? "is-active is-primary" : null}> <a onClick={()=>this.assessmentHandleView(null)}> skaters</a> </li>
+            {this.state.view === 'new' ? <li className="is-active is-primary"> new skater</li> : null }
+          </ul>
+        </nav>
+        </>
+        : null
+      }
+
+      <div className="container">
+      {this.renderPage()}
       </div>
+      </>
     )
 
   }
