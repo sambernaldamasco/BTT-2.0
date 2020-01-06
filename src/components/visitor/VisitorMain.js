@@ -70,7 +70,7 @@ class VisitorMain extends React.Component {
           : null
         }
 
-        <div className="main-container container">
+        <div className="container">
           <br/>
           {this.renderPage()}
         </div>

@@ -59,11 +59,11 @@ class Attendance extends React.Component {
     this.getRoster()
   }
 
-  componentDidUpdate(prevProps){
-    if (this.props.currentPractice.id !== prevProps.currentPractice.id){
-      this.generateCsv()
-    }
-  }
+  // componentDidUpdate(prevProps){
+  //   if (this.props.currentPractice.id !== prevProps.currentPractice.id){
+  //     this.generateCsv()
+  //   }
+  // }
 
   render(){
     return(

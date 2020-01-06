@@ -5,6 +5,7 @@ import NewPracticeForm from './NewPracticeForm.js'
 import SkaterList from './SkaterList.js'
 import PracticeList from './PracticeList.js'
 import TeamList from './TeamList.js'
+import HomeNav from './HomeNav.js'
 
 
 
@@ -13,6 +14,7 @@ class LoggedMain extends React.Component {
     super(props)
     this.state = {
       teams: [],
+      view: null
     }
   }
 
@@ -27,6 +29,39 @@ class LoggedMain extends React.Component {
     .catch(error => console.log(error))
   }
 
+  mainHandleView = (page) => {
+    this.setState({
+      view:page
+    })
+  }
+
+  renderPage = () => {
+    switch (this.state.view) {
+      case 'roster':
+      return  <TeamList logged_user={this.props.logged_user}/>
+
+      case 'assessment':
+      return <SkaterList logged_user={this.props.logged_user} />
+
+      case 'practice':
+      return <PracticeList logged_user={this.props.logged_user}/>
+
+
+      default:
+      return(
+        <>
+        <a className="is-size-1" onClick={()=> this.mainHandleView('roster')}>team roster</a>
+        <br/>
+        <a className="is-size-1" onClick={()=> this.mainHandleView('assessment')}>skill assessment</a>
+        <br/>
+        <a className="is-size-1" onClick={()=> this.mainHandleView('practice')}>practice management</a>
+        <br/>
+        </>
+      )
+    }
+  }
+
+
   componentDidMount() {
     this.getTeams()
   }
@@ -34,13 +69,19 @@ class LoggedMain extends React.Component {
   render(){
     return(
       <div>
+      { this.state.view !== null
+        ? <HomeNav mainHandleView={this.mainHandleView} />
+        : null
+      }
 
+      <div className="container">
+        <br/>
+        {this.renderPage()}
+      </div>
 
-      <TeamList logged_user={this.props.logged_user}/>
       <NewSkaterForm logged_user={this.props.logged_user} />
-      <SkaterList logged_user={this.props.logged_user} />
+
       <NewPracticeForm logged_user={this.props.logged_user} />
-      <PracticeList logged_user={this.props.logged_user}/>
       </div>
     )
   }

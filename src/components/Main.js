@@ -24,12 +24,18 @@ class Main extends React.Component {
     .catch(error => this.setState({authMsg: 'invalid username or password'}))
   }
 
+  logout = () => {
+    this.setState({
+      logged_user: null
+    })
+  }
+
   render(){
     return(
       <>
         {
           this.state.logged_user
-          ? <LoggedMain logged_user={this.state.logged_user} />
+          ? <LoggedMain logged_user={this.state.logged_user} logout={this.logout}/>
           :
           <>
           <Header />
