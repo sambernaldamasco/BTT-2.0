@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import LoggedMain from './logged/LoggedMain.js'
 import VisitorMain from './visitor/VisitorMain.js'
+import Header from './Header.js'
 
 
 class Main extends React.Component {
@@ -26,13 +27,17 @@ class Main extends React.Component {
 
   render(){
     return(
-      <div>
+      <>
         {
           this.state.logged_user
           ? <LoggedMain logged_user={this.state.logged_user} />
-          : <VisitorMain authUser={this.authUser} authMsg={this.state.authMsg} />
+          :
+          <>
+          <Header />
+          <VisitorMain authUser={this.authUser} authMsg={this.state.authMsg} />
+          </>
         }
-      </div>
+      </>
     )
   }
 }

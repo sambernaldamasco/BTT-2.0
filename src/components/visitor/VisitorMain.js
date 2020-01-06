@@ -3,7 +3,7 @@ import axios from 'axios'
 import NewTeamForm from './NewTeamForm.js'
 import NewUserForm from './NewUserForm.js'
 import LogInForm from './LogInForm.js'
-
+import VisitorNav from './VisitorNav.js'
 
 
 class VisitorMain extends React.Component {
@@ -11,6 +11,7 @@ class VisitorMain extends React.Component {
     super(props)
     this.state = {
       teams: [],
+      view: null
 
     }
   }
@@ -26,18 +27,53 @@ class VisitorMain extends React.Component {
     .catch(error => console.log(error))
   }
 
+  mainHandleView = (page) => {
+    this.setState({
+      view: page
+    })
+  }
+
+  renderPage = () => {
+    switch (this.state.view) {
+      case 'sign up':
+      return <NewTeamForm />
+
+      case 'sign in':
+      return <LogInForm teams={this.state.teams} authMsg={this.props.authMsg} authUser={this.props.authUser} />
+
+      case 'register':
+      return <NewUserForm teams={this.state.teams} />
+
+      default:
+      return(
+        <>
+        <a className="is-size-1" onClick={()=> this.mainHandleView('register')}>register your team</a>
+        <br/>
+        <a className="is-size-1" onClick={()=> this.mainHandleView('sign up')}>sign up</a>
+        <br/>
+        <a className="is-size-1" onClick={()=> this.mainHandleView('sign in')}>sign in</a>
+        <br/>
+        </>
+      )
+    }
+  }
+
   componentDidMount() {
     this.getTeams()
   }
 
   render(){
     return(
-      <div>
+      <>
+        { this.state.view !== null
+          ? <VisitorNav mainHandleView={this.mainHandleView} />
+          : null
+        }
 
-      <NewTeamForm />
-      <NewUserForm teams={this.state.teams} />
-      <LogInForm teams={this.state.teams} authMsg={this.props.authMsg} authUser={this.props.authUser} />
-      </div>
+        <div className="container">
+          {this.renderPage()}
+        </div>
+      </>
     )
   }
 }

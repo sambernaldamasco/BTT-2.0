@@ -72,6 +72,7 @@ class Overview extends React.Component {
     return(
       <>
         <div>
+          <h1>{this.props.skater.name}</h1>
           <div>
             <h2>exceptional at:</h2>
             <ul>
