@@ -65,51 +65,93 @@ class TeamworkAssessment extends React.Component {
     return(
       <>
       <form>
-        <label htmlFor="pack work"> pack work: </label>
-        <select id="pack_work" value={this.props.pack_work} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
-          <option value="1" >1</option>
-          <option value="2" >2</option>
-          <option value="3" >3</option>
-          <option value="4" >4</option>
-          <option value="5" >5</option>
-        </select>
+        <div className="skill-columns columns is-vcentered">
+          <div className="column is-narrow">
 
-        <label htmlFor="rubric"> {this.state.rubric.pack_work.msg} </label>
-        <br/>
-        <label htmlFor="Strategy and Adaptability"> Strategy and Adaptability: </label>
-        <select id="strategy_adaptability" value={this.props.strategy_adaptability} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
-          <option value="1" >1</option>
-          <option value="2" >2</option>
-          <option value="3" >3</option>
-          <option value="4" >4</option>
-          <option value="5" >5</option>
-        </select>
+          </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.strategy_adaptability.msg} </label>
-        <br/>
+          <div className="column">
 
-        <label htmlFor="awareness and communication"> awareness and communication: </label>
-        <select id="awareness_communication" value={this.props.awareness_communication} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
-          <option value="1" >1</option>
-          <option value="2" >2</option>
-          <option value="3" >3</option>
-          <option value="4" >4</option>
-          <option value="5" >5</option>
-        </select>
+          </div>
+        </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.awareness_communication.msg} </label>
-        <br/>
+        <div className="skill-columns columns is-vcentered">
+          <div className="column is-narrow">
+            <label className="is-size-5" htmlFor="pack work"> pack work: </label>
+            <select id="pack_work" value={this.props.pack_work} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+              <option > </option>
+              <option value="1" >1</option>
+              <option value="2" >2</option>
+              <option value="3" >3</option>
+              <option value="4" >4</option>
+              <option value="5" >5</option>
+            </select>
+          </div>
 
-        <label htmlFor="mental recovery"> mental recovery: </label>
-        <select id="mental_recovery" value={this.props.mental_recovery} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
-          <option value="1" >1</option>
-          <option value="2" >2</option>
-          <option value="3" >3</option>
-          <option value="4" >4</option>
-          <option value="5" >5</option>
-        </select>
+          <div className="column is-narrow">
+            <p> {this.state.rubric.pack_work.msg} </p>
+          </div>
+        </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.mental_recovery.msg} </label>
+        <div className="skill-columns columns is-vcentered">
+          <div className="column is-narrow">
+            <label className="is-size-5" htmlFor="Strategy and Adaptability"> strategy and adaptability: </label>
+            <select id="strategy_adaptability" value={this.props.strategy_adaptability} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+              <option > </option>
+              <option value="1" >1</option>
+              <option value="2" >2</option>
+              <option value="3" >3</option>
+              <option value="4" >4</option>
+              <option value="5" >5</option>
+            </select>
+          </div>
+
+          <div className="column">
+            <p> {this.state.rubric.strategy_adaptability.msg} </p>
+
+          </div>
+        </div>
+
+        <div className="skill-columns columns is-vcentered">
+          <div className="column is-narrow">
+            <label className="is-size-5" htmlFor="awareness and communication"> awareness and communication: </label>
+            <select id="awareness_communication" value={this.props.awareness_communication} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+              <option > </option>
+              <option value="1" >1</option>
+              <option value="2" >2</option>
+              <option value="3" >3</option>
+              <option value="4" >4</option>
+              <option value="5" >5</option>
+            </select>
+          </div>
+
+          <div className="column">
+          <p> {this.state.rubric.awareness_communication.msg} </p>
+
+          </div>
+        </div>
+
+        <div className="skill-columns columns is-vcentered">
+          <div className="column is-narrow">
+            <label className="is-size-5" htmlFor="mental recovery"> mental recovery: </label>
+            <select id="mental_recovery" value={this.props.mental_recovery} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+              <option > </option>
+              <option value="1" >1</option>
+              <option value="2" >2</option>
+              <option value="3" >3</option>
+              <option value="4" >4</option>
+              <option value="5" >5</option>
+            </select>
+          </div>
+
+          <div className="column">
+          <p> {this.state.rubric.mental_recovery.msg} </p>
+
+          </div>
+        </div>
+
+
+
       </form>
       </>
     )

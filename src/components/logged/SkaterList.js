@@ -78,7 +78,7 @@ class SkaterList extends React.Component {
         this.state.view !== "assessment"
         ?
         <>
-        <nav class="breadcrumb is-left lillefty" aria-label="breadcrumbs">
+        <nav class="breadcrumb lillefty" aria-label="breadcrumbs">
           <ul>
             <li> <a onClick={()=>this.props.mainHandleView(null)}>home</a> </li>
             <li className={this.state.view === null ? "is-active is-primary" : null}> <a onClick={()=>this.assessmentHandleView(null)}> skaters</a> </li>

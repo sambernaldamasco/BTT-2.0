@@ -79,6 +79,10 @@ $input-shadow: none;
   border-bottom: 1px solid $yellow;
 }
 
+.skill-columns{
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
 
 // Import only what you need from Bulma
 @import "../node_modules/bulma/bulma.sass"
