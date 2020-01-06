@@ -56,7 +56,7 @@ class NewTeamForm extends React.Component {
           </div>
         </div>
 
-        <input className="button is-primary"type="submit" value="add new team"/>
+        <input className="button is-primary" type="submit" value="add new team"/>
         </form>
       </div>
     )
