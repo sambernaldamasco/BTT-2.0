@@ -12,6 +12,7 @@ class SkillsAssessment extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      view: null,
       skater: null,
       lateral_movement: 1,
       hockey_stop: 1,
@@ -41,21 +42,7 @@ class SkillsAssessment extends React.Component {
         [skill]: this.props.currentSkater.skill[skill]
       })
     })
-    // this.setState({
-    //   lateral_movement: this.props.currentSkater.skill.lateral_movement,
-    //   hockey_stop: this.props.currentSkater.skill.hockey_stop,
-    //   plow_stop: this.props.currentSkater.skill.plow_stop,
-    //   turning_toe: this.props.currentSkater.skill.turning_toe,
-    //   power_slide: this.props.currentSkater.skill.power_slide,
-    //   transitions: this.props.currentSkater.skill.transitions,
-    //   backwards_skating: this.props.currentSkater.skill.backwards_skating,
-    //   speed_endurance: this.props.currentSkater.skill.speed_endurance,
-    //   recovery: this.props.currentSkater.skill.recovery,
-    //   pack_work: this.props.currentSkater.skill.pack_work,
-    //   strategy_adaptability: this.props.currentSkater.skill.strategy_adaptability,
-    //   awareness_communication: this.props.currentSkater.skill.awareness_communication,
-    //   mental_recovery: this.props.currentSkater.skill.mental_recovery
-    // })
+
   }
 
   finishAssessment = () => {
@@ -75,11 +62,11 @@ class SkillsAssessment extends React.Component {
   acceptSkater = () => {
     axios.put(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.state.skater.id}`, {skater: {accepted: true} })
     .then(response => {
-      console.log(response);
       this.props.getSkaters()
       this.setState({
         skater: null
       })
+      this.props.mainHandleView('roster')
     })
     .catch(error => console.log(error))
   }
@@ -87,11 +74,11 @@ class SkillsAssessment extends React.Component {
   dismissSkater = () => {
     axios.delete(`http://btt-backend.herokuapp.com/api/v1/skaters/${this.state.skater.id}`)
     .then(response => {
-      console.log(response);
       this.props.getSkaters()
       this.setState({
         skater: null
       })
+      this.props.assessmentHandleView(null)
     })
     .catch(error => console.log(error))
   }
@@ -101,10 +88,48 @@ class SkillsAssessment extends React.Component {
     .then(response => {
       console.log(response);
       this.setState({
-        skater: response.data
+        skater: response.data,
+        view: 'overview'
       })
     })
     .catch(error => console.log(error))
+  }
+
+
+  skillHandleView = (page) => {
+    this.setState({
+      view: page
+    })
+  }
+
+  renderPage = () => {
+    switch (this.state.view){
+      case 'overview':
+      return <Overview skater={this.state.skater} acceptSkater={this.acceptSkater} dismissSkater={this.dismissSkater}/>
+
+      default:
+      return(
+        <>
+          <h1 className="title-change is-size-2">{this.props.currentSkater.name.toUpperCase()} // skills assessment</h1>
+          <br/>
+
+          <h2 className="title-change is-size-3" id="agility">Agility</h2>
+          <AgilityAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
+          <hr className="lilbreak"/>
+
+          <h2 className="title-change is-size-3" id="fitness">Fitness</h2>
+          <FitnessAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
+          <hr className="lilbreak"/>
+
+          <h2 className="title-change is-size-3" id="teamwork">Teamwork</h2>
+          <TeamworkAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
+          <br/>
+
+          <button className="button is-primary" onClick={()=> this.finishAssessment}>finish assessment</button>
+
+        </>
+      )
+    }
   }
 
   componentDidMount(){
@@ -119,24 +144,22 @@ class SkillsAssessment extends React.Component {
 
   render(){
     return(
-      <div>
-      <h1>Skills Assessment</h1>
-        <h2>Agility</h2>
-        <AgilityAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
+      <>
+      <nav class="breadcrumb lillefty" aria-label="breadcrumbs">
+        <ul>
+          <a onClick={()=>this.props.mainHandleView(null)}>home</a>
+          <li><a onClick={()=>this.props.assessmentHandleView(null)}>skaters</a></li>
+          <li className="is-active is-primary">skill assessment</li>
+        </ul>
+      </nav>
 
-        <h2>Fitness</h2>
-        <FitnessAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
 
-        <h2>Teamwork</h2>
-        <TeamworkAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
+      <div className="container">
+      {this.renderPage()}
 
-        <button onClick={this.finishAssessment}>submit</button>
-        {
-          this.state.skater
-          ? <Overview skater={this.state.skater} acceptSkater={this.acceptSkater} dismissSkater={this.dismissSkater}/>
-          : null
-        }
       </div>
+
+      </>
     )
 
   }

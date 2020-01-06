@@ -51,7 +51,7 @@ class NewSkaterForm extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className="container">
         <h2 className="is-size-3"> add new skater</h2>
 
         <br/>

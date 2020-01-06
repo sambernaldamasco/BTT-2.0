@@ -44,14 +44,14 @@ class SkaterList extends React.Component {
   renderPage = () => {
     switch (this.state.view) {
       case 'assessment':
-      return <SkillAssessment currentSkater={this.state.currentSkater} getSkaters={this.getSkaters} assessmentHandleView={this.assessmentHandleView}/>
+      return <SkillAssessment currentSkater={this.state.currentSkater} getSkaters={this.getSkaters} assessmentHandleView={this.assessmentHandleView} mainHandleView={this.props.mainHandleView}/>
 
       case 'new':
       return <NewSkaterForm logged_user={this.props.logged_user} getSkaters={this.getSkaters} assessmentHandleView={this.assessmentHandleView}/>
 
       default:
       return(
-        <>
+        <div className="container">
           <h1 className="title-change is-size-2">list of skaters</h1>
           <ul>
             {this.state.skaters.map(skater => {
@@ -66,7 +66,7 @@ class SkaterList extends React.Component {
           <button className="button is-primary" onClick={()=>this.assessmentHandleView('new')}>
             add new skater
           </button>
-        </>
+        </div>
       )
     }
   }
@@ -89,9 +89,9 @@ class SkaterList extends React.Component {
         : null
       }
 
-      <div className="container">
+
       {this.renderPage()}
-      </div>
+
       </>
     )
 

@@ -42,7 +42,7 @@ class TeamList extends React.Component {
       .then(response => {
         console.log(response.data)
         this.setState({
-          practiceCount: response.data.length - 1
+          practiceCount: response.data.length
         })
       })
       .catch(error => console.log(error))

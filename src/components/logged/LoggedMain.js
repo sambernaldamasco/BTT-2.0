@@ -41,10 +41,10 @@ class LoggedMain extends React.Component {
       return  <TeamList logged_user={this.props.logged_user} mainHandleView={this.mainHandleView}/>
 
       case 'assessment':
-      return <SkaterList logged_user={this.props.logged_user} />
+      return <SkaterList logged_user={this.props.logged_user} mainHandleView={this.mainHandleView}/>
 
       case 'practice':
-      return <PracticeList logged_user={this.props.logged_user}/>
+      return <PracticeList logged_user={this.props.logged_user} mainHandleView={this.mainHandleView}/>
 
 
       default:

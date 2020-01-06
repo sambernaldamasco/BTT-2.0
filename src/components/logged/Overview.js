@@ -118,7 +118,7 @@ class Overview extends React.Component {
           ?
             <div>
               <h2 className="title-change is-size-3">attendance</h2>
-              <h2 className="is-size-4"> skater attended {(this.props.practiceCount - (this.props.skater.practices.length - 1))*100}% of practices</h2>
+              <h2 className="is-size-4"> skater attended {(this.props.skater.practices.length/this.props.practiceCount)*100}% of practices</h2>
 
               <ul>
               {this.props.skater.practices.map(practice => {
