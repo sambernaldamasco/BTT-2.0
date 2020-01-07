@@ -97,45 +97,72 @@ class AgilityAssessment extends React.Component {
     return(
       <>
       <form>
-        <label htmlFor="lateral movement"> Lateral Movement: </label>
-        <select id="lateral_movement" value={this.props.lateral_movement} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
-          <option value="1" >1</option>
-          <option value="2" >2</option>
-          <option value="3" >3</option>
-          <option value="4" >4</option>
-          <option value="5" >5</option>
-        </select>
 
-        <label htmlFor="rubric"> {this.state.rubric.lateral_movement.msg} </label>
-        <br/>
 
-        <label htmlFor="hockey stop"> Hockey Stop: </label>
-        <select id="hockey_stop" value={this.props.hockey_stop} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
-          <option value="1" >1</option>
-          <option value="2" >2</option>
-          <option value="3" >3</option>
-          <option value="4" >4</option>
-          <option value="5" >5</option>
-        </select>
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+          <label class="is-size-5" htmlFor="lateral movement"> Lateral Movement: </label>
+          <select id="lateral_movement" value={this.props.lateral_movement} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+            <option > </option>
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+            <option value="4" >4</option>
+            <option value="5" >5</option>
+          </select>
+        </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.hockey_stop.msg} </label>
-        <br/>
+        <div className="column">
+          <p> {this.state.rubric.lateral_movement.msg} </p>
 
-        <label htmlFor="plow stop"> plow Stop: </label>
+        </div>
+      </div>
+
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+          <label class="is-size-5" htmlFor="hockey stop"> Hockey Stop: </label>
+          <select id="hockey_stop" value={this.props.hockey_stop} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+            <option > </option>
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+            <option value="4" >4</option>
+            <option value="5" >5</option>
+          </select>
+        </div>
+
+        <div className="column">
+          <p> {this.state.rubric.hockey_stop.msg} </p>
+
+        </div>
+      </div>
+
+
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+        <label class="is-size-5" htmlFor="plow stop"> plow Stop: </label>
         <select id="plow_stop" value={this.props.plow_stop} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+          <option > </option>
           <option value="1" >1</option>
           <option value="2" >2</option>
           <option value="3" >3</option>
           <option value="4" >4</option>
           <option value="5" >5</option>
         </select>
+        </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.plow_stop.msg} </label>
+        <div className="column">
+        <p> {this.state.rubric.plow_stop.msg} </p>
 
-        <br/>
+        </div>
+      </div>
 
-        <label htmlFor="turning toe stop"> turning toe stop: </label>
+
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+        <label class="is-size-5" htmlFor="turning toe stop"> turning toe stop: </label>
         <select id="turning_toe" value={this.props.turning_toe} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+          <option > </option>
           <option value="1" >1</option>
           <option value="2" >2</option>
           <option value="3" >3</option>
@@ -143,44 +170,73 @@ class AgilityAssessment extends React.Component {
           <option value="5" >5</option>
         </select>
 
-        <label htmlFor="rubric"> {this.state.rubric.turning_toe.msg} </label>
-        <br/>
+        </div>
 
-        <label htmlFor="power slide"> power slide: </label>
+        <div className="column">
+        <p> {this.state.rubric.turning_toe.msg} </p>
+
+        </div>
+      </div>
+
+
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+        <label class="is-size-5" htmlFor="power slide"> power slide: </label>
         <select id="power_slide" value={this.props.power_slide} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+          <option > </option>
           <option value="1" >1</option>
           <option value="2" >2</option>
           <option value="3" >3</option>
           <option value="4" >4</option>
           <option value="5" >5</option>
         </select>
+        </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.power_slide.msg} </label>
+        <div className="column">
+        <p> {this.state.rubric.power_slide.msg} </p>
 
-        <br/>
+        </div>
+      </div>
 
-        <label htmlFor="transitions"> transitions: </label>
+
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+        <label class="is-size-5" htmlFor="transitions"> transitions: </label>
         <select id="transitions" value={this.props.plow_stop} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+          <option > </option>
           <option value="1" >1</option>
           <option value="2" >2</option>
           <option value="3" >3</option>
           <option value="4" >4</option>
           <option value="5" >5</option>
         </select>
+        </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.transitions.msg} </label>
-        <br/>
+        <div className="column">
+        <p> {this.state.rubric.transitions.msg} </p>
 
-        <label htmlFor="backwards skating"> backwards skating/blocking: </label>
+        </div>
+      </div>
+
+
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+        <label class="is-size-5" htmlFor="backwards skating"> backwards skating/blocking: </label>
         <select id="backwards_skating" value={this.props.backwards_skating} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+          <option > </option>
           <option value="1" >1</option>
           <option value="2" >2</option>
           <option value="3" >3</option>
           <option value="4" >4</option>
           <option value="5" >5</option>
         </select>
+        </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.backwards_skating.msg} </label>
+        <div className="column">
+        <p> {this.state.rubric.backwards_skating.msg} </p>
+
+        </div>
+      </div>
 
       </form>
       </>

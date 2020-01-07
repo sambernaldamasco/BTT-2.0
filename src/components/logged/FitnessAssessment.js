@@ -46,28 +46,44 @@ class FitnessAssessment extends React.Component {
     return(
       <>
       <form>
-        <label htmlFor="speed and endurance"> speed & endurance: </label>
-        <select id="speed_endurance" value={this.props.speed_endurance} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
-          <option value="1" >1</option>
-          <option value="2" >2</option>
-          <option value="3" >3</option>
-          <option value="4" >4</option>
-          <option value="5" >5</option>
-        </select>
 
-        <label htmlFor="rubric"> {this.state.rubric.speed_endurance.msg} </label>
-        <br/>
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+          <label className="is-size-5" htmlFor="speed and endurance"> speed & endurance: </label>
+          <select id="speed_endurance" value={this.props.speed_endurance} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+            <option > </option>
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+            <option value="4" >4</option>
+            <option value="5" >5</option>
+          </select>
+        </div>
 
-        <label htmlFor="recovery"> recovery: </label>
-        <select id="recovery" value={this.props.recovery} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
-          <option value="1" >1</option>
-          <option value="2" >2</option>
-          <option value="3" >3</option>
-          <option value="4" >4</option>
-          <option value="5" >5</option>
-        </select>
+        <div className="column">
+          <p> {this.state.rubric.speed_endurance.msg} </p>
+        </div>
+      </div>
 
-        <label htmlFor="rubric"> {this.state.rubric.recovery.msg} </label>
+      <div className="skill-columns columns is-vcentered">
+        <div className="column is-narrow">
+          <label className="is-size-5" htmlFor="recovery"> recovery: </label>
+          <select id="recovery" value={this.props.recovery} onChange={event => {this.props.handleChange(event) ; this.changeRubric(event)} }>
+            <option > </option>
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+            <option value="4" >4</option>
+            <option value="5" >5</option>
+          </select>
+        </div>
+
+        <div className="column">
+          <p> {this.state.rubric.recovery.msg} </p>
+
+        </div>
+      </div>
+
 
       </form>
       </>

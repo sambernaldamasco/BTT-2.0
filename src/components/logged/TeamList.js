@@ -60,7 +60,9 @@ class TeamList extends React.Component {
           <ul>
           {this.state.skaters.map(skater => {
             return(
-              <li className="is-size-4" key={skater.id} onClick={()=>this.selectSkater(skater)}>{skater.name} </li>
+              <li className="is-size-4" key={skater.id}>
+                <a onClick={()=>this.selectSkater(skater)}> {skater.name} </a>
+              </li>
             )
           })}
           </ul>

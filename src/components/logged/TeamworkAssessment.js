@@ -65,15 +65,6 @@ class TeamworkAssessment extends React.Component {
     return(
       <>
       <form>
-        <div className="skill-columns columns is-vcentered">
-          <div className="column is-narrow">
-
-          </div>
-
-          <div className="column">
-
-          </div>
-        </div>
 
         <div className="skill-columns columns is-vcentered">
           <div className="column is-narrow">

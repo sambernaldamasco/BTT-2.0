@@ -64,7 +64,8 @@ class SkillsAssessment extends React.Component {
     .then(response => {
       this.props.getSkaters()
       this.setState({
-        skater: null
+        skater: null,
+        view: null
       })
       this.props.mainHandleView('roster')
     })
@@ -76,7 +77,8 @@ class SkillsAssessment extends React.Component {
     .then(response => {
       this.props.getSkaters()
       this.setState({
-        skater: null
+        skater: null,
+        view: null
       })
       this.props.assessmentHandleView(null)
     })
@@ -110,7 +112,7 @@ class SkillsAssessment extends React.Component {
       default:
       return(
         <>
-          <h1 className="title-change is-size-2">{this.props.currentSkater.name.toUpperCase()} // skills assessment</h1>
+          <h1 className="title-change is-size-2">{this.props.currentSkater.name.toUpperCase()} / skills assessment</h1>
           <br/>
 
           <h2 className="title-change is-size-3" id="agility">Agility</h2>
@@ -124,8 +126,8 @@ class SkillsAssessment extends React.Component {
           <h2 className="title-change is-size-3" id="teamwork">Teamwork</h2>
           <TeamworkAssessment currentSkater={this.props.currentSkater} handleChange={this.handleChange}/>
           <br/>
+          <a className="button is-primary" onClick={this.finishAssessment}> finish assessment </a>
 
-          <button className="button is-primary" onClick={()=> this.finishAssessment}>finish assessment</button>
 
         </>
       )
