@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import NewPracticeForm from './NewPracticeForm.js'
 import SkaterList from './SkaterList.js'
 import PracticeList from './PracticeList.js'
 import TeamList from './TeamList.js'
@@ -56,6 +55,11 @@ class LoggedMain extends React.Component {
         <br/>
         <a className="is-size-1" onClick={()=> this.mainHandleView('practice')}>practice management</a>
         <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <a className="is-size-3" onClick={this.props.logout}>log out</a>
         </div>
       )
     }
@@ -70,7 +74,7 @@ class LoggedMain extends React.Component {
     return(
       <div>
       { this.state.view !== null
-        ? <HomeNav mainHandleView={this.mainHandleView} />
+        ? <HomeNav mainHandleView={this.mainHandleView} logout={this.props.logout}/>
         : <HomeHeader />
       }
 
@@ -80,7 +84,6 @@ class LoggedMain extends React.Component {
       </div>
 
 
-      <NewPracticeForm logged_user={this.props.logged_user} />
       </div>
     )
   }

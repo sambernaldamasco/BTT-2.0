@@ -1,13 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import Attendance from './Attendance.js'
+import NewPracticeForm from './NewPracticeForm.js'
 
 class PracticeList extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       practices: [],
-      currentPractice: ''
+      currentPractice: '',
+      view: null
     }
   }
 
@@ -24,9 +26,63 @@ class PracticeList extends React.Component {
 
   selectPractice = (practice) => {
     this.setState({
-      currentPractice: practice
+      currentPractice: practice,
+      view: 'attendance'
     })
   }
+
+  practiceHandleView = (page) => {
+    this.setState({
+      view: page
+    })
+  }
+
+  renderPage = () => {
+    switch (this.state.view) {
+      case 'attendance':
+      return <Attendance currentPractice={this.state.currentPractice} getPractices={this.getPractices} practiceHandleView={this.practiceHandleView}/>
+
+      case 'new':
+      return <NewPracticeForm logged_user={this.props.logged_user} getPractices={this.getPractices} practiceHandleView={this.practiceHandleView}/>
+
+      default:
+      return (
+        <>
+          <h1 className="title-change is-size-2">practice management</h1>
+          <button className="button is-primary" onClick={()=>this.practiceHandleView('new')}>
+            add new practice
+          </button>
+          <br/>
+          <br/>
+
+          <h2 className="title-change is-size-3">upcoming practices</h2>
+          <ul>
+          {this.state.practices.map(practice => {
+            return !practice.has_happened ?
+              <li className="is-size-4" key={practice.id} >
+                <a onClick={()=>this.selectPractice(practice)}>{practice.date} @ {practice.location} </a>
+              </li>
+            : null
+          })}
+          </ul>
+          <br/>
+          <hr className="lilbreak"/>
+          
+          <h2 className="title-change is-size-3">past practices</h2>
+          <ul>
+          {this.state.practices.map(practice => {
+            return practice.has_happened ?
+              <li className="is-size-4" key={practice.id}>
+                <a onClick={()=>this.selectPractice(practice)}> {practice.date} @ {practice.location} </a>
+              </li>
+            : null
+          })}
+          </ul>
+        </>
+      )
+    }
+  }
+
 
   componentDidMount() {
     this.getPractices()
@@ -34,33 +90,11 @@ class PracticeList extends React.Component {
 
   render(){
     return(
-      <div>
-        <h1>list of practices</h1>
-
-        <h2>upcoming practices</h2>
-        <ul>
-        {this.state.practices.map(practice => {
-          return !practice.has_happened ?
-            <li key={practice.id} onClick={()=>this.selectPractice(practice)}>{practice.date} @ {practice.location} </li>
-          : null
-        })}
-        </ul>
-
-        <h2>past practices</h2>
-        <ul>
-        {this.state.practices.map(practice => {
-          return practice.has_happened ?
-            <li key={practice.id} onClick={()=>this.selectPractice(practice)}>{practice.date} @ {practice.location} </li>
-          : null
-        })}
-        </ul>
-
-        {
-          this.state.currentPractice
-          ? <Attendance currentPractice={this.state.currentPractice} getPractices={this.getPractices}/>
-          : null
-        }
-      </div>
+      <>
+        <div className="container">
+          {this.renderPage()}
+        </div>
+      </>
     )
 
   }

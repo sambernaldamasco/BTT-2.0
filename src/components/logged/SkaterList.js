@@ -82,7 +82,7 @@ class SkaterList extends React.Component {
           <ul>
             <li> <a onClick={()=>this.props.mainHandleView(null)}>home</a> </li>
             <li className={this.state.view === null ? "is-active is-primary" : null}> <a onClick={()=>this.assessmentHandleView(null)}> skaters</a> </li>
-            {this.state.view === 'new' ? <li className="is-active is-primary"> new skater</li> : null }
+            {this.state.view === 'new' ? <li className="is-active is-primary"> <a>new skater</a> </li> : null }
           </ul>
         </nav>
         </>

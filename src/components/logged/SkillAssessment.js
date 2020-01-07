@@ -149,9 +149,9 @@ class SkillsAssessment extends React.Component {
       <>
       <nav class="breadcrumb lillefty" aria-label="breadcrumbs">
         <ul>
-          <a onClick={()=>this.props.mainHandleView(null)}>home</a>
+          <li><a onClick={()=>this.props.mainHandleView(null)}>home</a></li>
           <li><a onClick={()=>this.props.assessmentHandleView(null)}>skaters</a></li>
-          <li className="is-active is-primary">skill assessment</li>
+          <li className="is-active is-primary"><a> skill assessment </a> </li>
         </ul>
       </nav>
 

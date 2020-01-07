@@ -6,8 +6,14 @@ class HomeNav extends React.Component{
   render(){
     return (
       <>
-        <nav className="navbar is-dark lilrighty" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-dark lilrighty lilrighty" role="navigation" aria-label="main navigation">
           <div id="navbarBasicExample" className="navbar-menu" >
+
+            <div className="navbar-start">
+              <a className="navbar-item" onClick={this.props.logout}>log out</a>
+
+            </div>
+
             <div className="navbar-end">
             <a className="navbar-item" onClick={()=> this.props.mainHandleView(null)}>
               home
@@ -26,8 +32,6 @@ class HomeNav extends React.Component{
 
               </a>
             </div>
-
-
           </div>
         </nav>
     </>
