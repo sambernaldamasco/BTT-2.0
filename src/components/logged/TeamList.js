@@ -82,8 +82,8 @@ class TeamList extends React.Component {
       <nav class="breadcrumb is-left lillefty" aria-label="breadcrumbs">
         <ul>
           <li> <a onClick={()=>this.props.mainHandleView(null)}>home</a> </li>
-          <li className={this.state.view === null ? "is-active" : null}> <a onClick={()=>this.teamHandleView(null)}>team</a> </li>
-          {this.state.view === 'overview' ? <li className="is-active"> overview</li> : null }
+          <li className={this.state.view === null ? "is-active is-primary" : null}> <a onClick={()=>this.teamHandleView(null)}>team</a> </li>
+          {this.state.view === 'overview' ? <li className="is-active is-primary"> <a>overview</a></li> : null }
         </ul>
       </nav>
 

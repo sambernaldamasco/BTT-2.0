@@ -67,7 +67,7 @@ class PracticeList extends React.Component {
           </ul>
           <br/>
           <hr className="lilbreak"/>
-          
+
           <h2 className="title-change is-size-3">past practices</h2>
           <ul>
           {this.state.practices.map(practice => {
@@ -91,6 +91,15 @@ class PracticeList extends React.Component {
   render(){
     return(
       <>
+        <nav className="breadcrumb lillefty" aria-label="breadcrumbs">
+          <ul>
+            <li> <a onClick={()=>this.props.mainHandleView(null)}>home</a> </li>
+            <li className={this.state.view === null ? "is-active is-primary" : null}> <a onClick={()=>this.practiceHandleView(null)}> practices</a> </li>
+            {this.state.view === 'new' ? <li className="is-active is-primary"> <a>new practice</a> </li> : null }
+            {this.state.view === 'attendance' ? <li className="is-active is-primary"> <a>attendance</a> </li> : null }
+          </ul>
+        </nav>
+
         <div className="container">
           {this.renderPage()}
         </div>

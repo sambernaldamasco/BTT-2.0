@@ -53,6 +53,10 @@ class SkaterList extends React.Component {
       return(
         <div className="container">
           <h1 className="title-change is-size-2">list of skaters</h1>
+          <button className="button is-primary" onClick={()=>this.assessmentHandleView('new')}>
+            add new skater
+          </button>
+
           <ul>
             {this.state.skaters.map(skater => {
               return(
@@ -63,9 +67,7 @@ class SkaterList extends React.Component {
             })}
           </ul>
           <br/>
-          <button className="button is-primary" onClick={()=>this.assessmentHandleView('new')}>
-            add new skater
-          </button>
+
         </div>
       )
     }
@@ -78,7 +80,7 @@ class SkaterList extends React.Component {
         this.state.view !== "assessment"
         ?
         <>
-        <nav class="breadcrumb lillefty" aria-label="breadcrumbs">
+        <nav className="breadcrumb lillefty" aria-label="breadcrumbs">
           <ul>
             <li> <a onClick={()=>this.props.mainHandleView(null)}>home</a> </li>
             <li className={this.state.view === null ? "is-active is-primary" : null}> <a onClick={()=>this.assessmentHandleView(null)}> skaters</a> </li>

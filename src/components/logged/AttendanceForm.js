@@ -99,19 +99,19 @@ class AttendanceForm extends React.Component {
   render(){
     return(
       <>
-        <h1>attendance</h1>
         <form onSubmit={this.handleSubmit}>
           {this.props.skaters.map(skater => {
             console.log(skater);
             return(
               <div>
-                <label htmlFor="skater name"> {skater.name} </label>
+                <label className="is-size-5" htmlFor="skater name"> {skater.name} </label>
                 <Checkbox name={skater.name} id={skater.id} checked={this.state.checked} handleCheckboxChange={this.toggleCheckbox}/>
                 <br/>
               </div>
             )
           })}
-        <input type="submit" value="save"/>
+        <br/>
+        <input className="button is-primary" type="submit" value="save"/>
         </form>
       </>
     )

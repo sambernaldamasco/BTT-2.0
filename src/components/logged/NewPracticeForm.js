@@ -31,15 +31,17 @@ class NewPracticeForm extends React.Component {
 
     axios.post('http://btt-backend.herokuapp.com/api/v1/practices', formData)
     .then(response => {
-      console.log(response);
+      this.props.getPractices()
       this.setState({
         date: '',
         location: '',
         has_happened: false
       })
+
+      this.props.practiceHandleView(null)
+
     })
     .catch(error => console.log(error))
-
   }
 
 
@@ -48,14 +50,25 @@ class NewPracticeForm extends React.Component {
     return(
       <>
         <form onSubmit={this.handleSubmit}>
+          <div className="field">
+            <label className="is-size-5"  htmlFor="date"> date: </label>
 
-        <label htmlFor="date"> date: </label>
-        <input type="date" id="date" value={this.state.date} onChange={this.handleChange}/>
+            <div className="control">
+              <input className="input" type="date" id="date" value={this.state.date} onChange={this.handleChange}/>
 
-        <label htmlFor="location"> location: </label>
-        <input type="text" id="location" value={this.state.location} onChange={this.handleChange}/>
+            </div>
+          </div>
 
-        <input type="submit" value="add practice"/>
+          <div className="field">
+            <label className="is-size-5" htmlFor="location"> location: </label>
+
+            <div className="control">
+              <input className="input" type="text" id="location" value={this.state.location} onChange={this.handleChange}/>
+
+            </div>
+          </div>
+
+          <input className="button is-primary" type="submit" value="add practice"/>
         </form>
       </>
     )

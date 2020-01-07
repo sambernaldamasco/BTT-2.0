@@ -27,6 +27,7 @@ class Attendance extends React.Component {
     .then(response => {
       console.log(response);
       this.props.getPractices()
+      this.props.practiceHandleView(null)
     })
     .catch(error => console.log(error))
 
@@ -68,17 +69,20 @@ class Attendance extends React.Component {
   render(){
     return(
       <div>
-        <h1>{this.props.currentPractice.date} @ {this.props.currentPractice.location}</h1>
+        <h1 className="title-change is-size-2">
+          attendance - <span className="is-size-3"> {this.props.currentPractice.date} @ {this.props.currentPractice.location} </span>
+        </h1>
+
         {
           this.props.currentPractice.skaters.length > 0
           ? <div>
               <ul>
                 {this.props.currentPractice.skaters.map(skater => {
-                  return <li>{skater.name}</li>
+                  return <li className="is-size-5">{skater.name}</li>
                 })}
               </ul>
             </div>
-          : <AttendanceForm currentPractice={this.props.currentPractice} submitAttendance={this.submitAttendance} skaters={this.state.skaters}/>
+          : <AttendanceForm currentPractice={this.props.currentPractice} submitAttendance={this.submitAttendance} skaters={this.state.skaters} />
         }
 
       </div>
