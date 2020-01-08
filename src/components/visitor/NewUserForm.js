@@ -69,7 +69,7 @@ class NewUserForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
           <div className="field">
-            <label className="label" htmlFor="teams"> team </label>
+            <label htmlFor="teams"> team </label>
 
             <div className="control">
               <div className="select">
@@ -86,7 +86,7 @@ class NewUserForm extends React.Component {
           </div>
 
           <div className="field">
-            <label className="label" htmlFor="invite code"> invite code: </label>
+            <label htmlFor="invite code"> invite code: </label>
 
             <div className="control">
               <input className="input" type="text" id="invite_code" value={this.state.invite_code} onChange={this.handleChange}/>
@@ -94,7 +94,7 @@ class NewUserForm extends React.Component {
           </div>
 
           <div className="field">
-            <label className="label" htmlFor="username"> username: </label>
+            <label htmlFor="username"> username: </label>
 
             <div className="control">
               <input className="input" type="text" id="username" value={this.state.username} onChange={this.handleChange}/>
@@ -103,7 +103,7 @@ class NewUserForm extends React.Component {
           </div>
 
           <div className="field">
-            <label className="label" htmlFor="password"> password: </label>
+            <label htmlFor="password"> password: </label>
 
             <div className="control">
               <input className="input" type="password" id="password" value={this.state.password} onChange={this.handleChange}/>

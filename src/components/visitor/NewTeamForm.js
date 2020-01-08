@@ -43,14 +43,14 @@ class NewTeamForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
 
         <div class="field">
-          <label className="label" htmlFor="name"> name </label>
+          <label htmlFor="name"> name </label>
           <div className="control">
             <input className="input" type="text" id="name" value={this.state.name} onChange={this.handleChange}/>
           </div>
         </div>
 
         <div className="field">
-          <label className="label" htmlFor="invite_code"> invite Code </label>
+          <label htmlFor="invite_code"> invite Code </label>
 
           <div className="control">
           <input className="input" type="text" id="invite_code" value={this.state.invite_code} onChange={this.handleChange}/>

@@ -42,7 +42,7 @@ class VisitorMain extends React.Component {
       return <LogInForm teams={this.state.teams} mainHandleView={this.state.mainHandleView} authUser={this.props.authUser} authMsg={this.props.authMsg} />
 
       case 'register':
-      return <NewTeamForm mainHandleView={this.state.mainHandleView} getTeams={this.getTeams}/>
+      return <NewTeamForm mainHandleView={this.mainHandleView} getTeams={this.getTeams}/>
 
       default:
       return(
